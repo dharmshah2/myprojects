@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from customers.views import signup_view
+from customers.views import signup_view, dashboard, cleaner_view
 from django.contrib.auth import views as auth_views
 
 
@@ -27,4 +27,8 @@ urlpatterns = [
 
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+
+    url(r'^$', dashboard, name='dashboard'),
+
+    url(r'^cleaner/details$', cleaner_view, name='cleaner-details'),
 ]

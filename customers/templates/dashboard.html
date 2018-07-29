@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <h2>Book a Cleaner</h2>
+  <form method="post">
+  		
+  		{{ error }}
+    {% csrf_token %}
+    <p>
+    	<label for="booking_date">Booking Date:</label>
+    	<input type="date" name="booking_date" id="booking_date">
+    </p>
+    
+    <p>
+    	<label for="booking_time">Booking Time:</label>
+    	<input type="text" name="booking_time" id="booking_time" placeholder="Enter Time in 24 hours format. i.e. 23:10">
+    </p>
+
+    <p>
+    	<label for="customer_mobile_number">Mobile Number:</label>
+    	<input type="number" name="customer_mobile_number" id="customer_mobile_number" placeholder="9999999999">
+    </p>
+
+    <p>
+    	<label for="city">City:</label>
+    	<select name="city" id="id_city">
+    		{% for city in cities %}
+    			<option value="{{ city.id }}">{{ city.city }}</option>
+    		{% endfor %}
+    	</select>
+    </p>
+
+	<button type="submit">Confirm</button>
+	<button type="submit"><a href="{% url 'cleaner-details' %}">Are you a cleaner ?</a></button>
+  </form>
+  <div style="margin-top: 2%" >
+  </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Please fill the details</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% if error %}
+    		{{ error }}
+    {% endif %}
+    {{ form.as_p }}
+    <p>
+    	<label for="city">City:</label>
+    	<select name="city" id="id_city">
+    		{% for city in cities %}
+    			<option value="{{ city.id }}">{{ city.city }}</option>
+    		{% endfor %}
+    	</select>
+    </p>
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}
